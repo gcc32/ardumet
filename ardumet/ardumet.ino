@@ -1,6 +1,4 @@
 /* 
-SimpleReceive 
-This sketch displays text strings received using VirtualWire 
 Connect the Receiver data pin to Arduino pin 11 
 */
 
@@ -14,16 +12,16 @@ void setup()
     Serial.begin(9600);
 
     Serial.println("Dispositivo listo para recibir datos:");
-
+      
     // Initialize the IO and ISR 
     vw_setup(2000); // Bits per sec
 
     vw_rx_start(); // Start the receiver 
+    
 }
  
-
-void loop() 
-{ 
+String receive_data(){
+  String data;
     if (vw_get_message(message, &messageLength)) // Non-blocking 
     { 
         Serial.print("Received: ");
@@ -35,5 +33,15 @@ void loop()
 
         Serial.println(); 
     }  
+   return data; 
+}
+
+
+void loop() 
+{ 
+  String data = receive_data();
+  
+  Serial.println(data);  
+  delay(1000);  
 }
 
