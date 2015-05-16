@@ -24,14 +24,10 @@ String receive_data(){
   String data;
     if (vw_get_message(message, &messageLength)) // Non-blocking 
     { 
-        Serial.print("Received: ");
-
-        for (int i = 0; i < messageLength; i++) 
+        for (int i = 0; i < 21; i++) 
         { 
         Serial.write(message[i]); 
         }
-
-        Serial.println(); 
     }  
    return data; 
 }

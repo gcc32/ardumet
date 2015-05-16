@@ -94,7 +94,14 @@ public class SerialTest implements SerialPortEventListener {
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
 				String inputLine=input.readLine();
-				System.out.println(inputLine);
+				//System.out.println(inputLine);
+                                
+                                inputLine = (String) inputLine;
+                                
+                                String[] datos_estacion = inputLine.split(";", -1);
+                                
+                                System.out.println(datos_estacion);
+                                
 			} catch (Exception e) {
 				System.err.println(e.toString());
 			}
@@ -103,6 +110,8 @@ public class SerialTest implements SerialPortEventListener {
 	}
 
 	public static void main(String[] args) throws Exception {
+                   
+            
 		SerialTest main = new SerialTest();
 		main.initialize();
 		Thread t=new Thread() {
