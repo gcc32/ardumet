@@ -5,10 +5,12 @@ import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent; 
 import gnu.io.SerialPortEventListener; 
+import java.util.Arrays;
 import java.util.Enumeration;
 
 
-public class SerialTest implements SerialPortEventListener {
+public class Ardumet implements SerialPortEventListener {
+        static String [] datosRecibidos;
 	SerialPort serialPort;
         /** The port we're normally going to use. */
 	private static final String PORT_NAMES[] = { 
@@ -95,33 +97,44 @@ public class SerialTest implements SerialPortEventListener {
 			try {
 				String inputLine=input.readLine();
 				//System.out.println(inputLine);
-                                
                                 inputLine = (String) inputLine;
                                 
                                 String[] datos_estacion = inputLine.split(";", -1);
+                                                                
+                                setDatosRecibidos(datos_estacion);
                                 
-                                System.out.println(datos_estacion);
                                 
 			} catch (Exception e) {
 				System.err.println(e.toString());
 			}
 		}
 		// Ignore all the other eventTypes, but you should consider the other ones.
+                
 	}
+        
+        public static String[] getDatosRecibidos() {
+            return datosRecibidos;
+        }
+        
+        public void setDatosRecibidos (String[] datos) {
+            datosRecibidos = datos;
+            //System.out.println(Arrays.toString(datosRecibidos));
+        }
 
 	public static void main(String[] args) throws Exception {
                    
-            
-		SerialTest main = new SerialTest();
+                //frame0.setvisible(true);
+		Ardumet main = new Ardumet();
 		main.initialize();
 		Thread t=new Thread() {
 			public void run() {
+                            Window form = new Window();
+                            form.setVisible(true);
 				//the following line will keep this app alive for 1000 seconds,
 				//waiting for events to occur and responding to them (printing incoming messages to console).
 				try {Thread.sleep(1000000);} catch (InterruptedException ie) {}
 			}
 		};
 		t.start();
-		System.out.println("Started");
 	}
 }

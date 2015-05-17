@@ -11,11 +11,10 @@ void setup()
 { 
     Serial.begin(9600);
 
-    Serial.println("Dispositivo listo para recibir datos:");
+    //Serial.println("Dispositivo listo para recibir datos:");
       
     // Initialize the IO and ISR 
     vw_setup(2000); // Bits per sec
-
     vw_rx_start(); // Start the receiver 
     
 }
@@ -35,7 +34,7 @@ String receive_data(){
 
 void loop() 
 { 
-  String data = receive_data();
+  String data = "23.0;45.0;456;23.0";//receive_data(); 
   
   Serial.println(data);  
   delay(1000);  
