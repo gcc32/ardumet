@@ -36,8 +36,8 @@ public class Window extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         JL_TEM = new javax.swing.JLabel();
         JL_HUM = new javax.swing.JLabel();
-        JL_LIG = new javax.swing.JLabel();
         JL_RAI = new javax.swing.JLabel();
+        JL_LIG = new javax.swing.JLabel();
         Boton1 = new javax.swing.JButton();
         jProgressBar2 = new javax.swing.JProgressBar();
         jProgressBar3 = new javax.swing.JProgressBar();
@@ -82,16 +82,15 @@ public class Window extends javax.swing.JFrame {
         JL_HUM.setText("nAh");
         JL_HUM.setToolTipText("");
 
-        JL_LIG.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        JL_LIG.setText("nAh");
-        JL_LIG.setToolTipText("");
-
         JL_RAI.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         JL_RAI.setText("nAh");
         JL_RAI.setToolTipText("");
 
+        JL_LIG.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        JL_LIG.setText("nAh");
+        JL_LIG.setToolTipText("");
+
         Boton1.setText("Actualizar Datos");
-        Boton1.setEnabled(false);
         Boton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton1ActionPerformed(evt);
@@ -173,11 +172,13 @@ public class Window extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JL_HUM, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                            .addComponent(JL_TEM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JL_RAI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JL_LIG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(JL_HUM, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                    .addComponent(JL_TEM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(JL_RAI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JL_LIG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel1))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,35 +267,42 @@ public class Window extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(JL_RAI)
-                        .addComponent(jLabel5))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JL_RAI))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel17)
                         .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jLabel20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(JL_LIG)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel5)
+                        .addComponent(JL_LIG))
                     .addComponent(jProgressBar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addGap(18, 18, 18)
                 .addComponent(Boton1)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton1ActionPerformed
-        setTextData();
+        String [] datosRec = Ardumet.getDatosRecibidos();
+        int long_datos = datosRec.length;
+        
+        if (long_datos == 4) {
+            setTextData();
+        }
+        
+        
     }//GEN-LAST:event_Boton1ActionPerformed
 
     /**
@@ -304,8 +312,8 @@ public class Window extends javax.swing.JFrame {
         String [] datosRec = Ardumet.getDatosRecibidos();
         JL_TEM.setText(datosRec[0]+" ºC");
         JL_HUM.setText(datosRec[1]+" %");
-        JL_RAI.setText(datosRec[2]+" mm");
-        JL_LIG.setText(datosRec[3]+" Lux");
+        JL_RAI.setText(datosRec[2]+" Lux");
+        JL_LIG.setText(datosRec[3]+" mm");
         
         
         jProgressBar2.setValue(Math.round(Float.parseFloat(datosRec[0]))+50);

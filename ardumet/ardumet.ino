@@ -19,24 +19,23 @@ void setup()
     
 }
  
-String receive_data(){
+void receive_data(){
   String data;
-    if (vw_get_message(message, &messageLength)) // Non-blocking 
+    if (vw_get_message(message, &messageLength)) // Comprobamos la recepcin del mensaje y lo mostramos en tal caso. 
     { 
-        for (int i = 0; i < 21; i++) 
+        for (int i = 0; i < messageLength; i++) 
         { 
         Serial.write(message[i]); 
         }
+    Serial.println(data);     
+    
     }  
-   return data; 
 }
 
 
 void loop() 
 { 
-  String data = "23.0;45.0;456;23.0";//receive_data(); 
-  
-  Serial.println(data);  
+  receive_data(); //Ejecutamos la funcion para capturar los datos recibidos
   delay(1000);  
 }
 

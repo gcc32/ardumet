@@ -118,7 +118,7 @@ public class Ardumet implements SerialPortEventListener {
         
         public void setDatosRecibidos (String[] datos) {
             datosRecibidos = datos;
-            //System.out.println(Arrays.toString(datosRecibidos));
+            System.out.println(Arrays.toString(datosRecibidos));
         }
 
 	public static void main(String[] args) throws Exception {
